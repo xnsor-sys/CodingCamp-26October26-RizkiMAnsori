@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f4ef">
+  <meta name="description" content="A simple personal expense and budget visualizer.">
+  <title>Daybook | Expense tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Daybook home">
+        <span class="brand-mark" aria-hidden="true">d.</span>
+        <span>daybook</span>
+      </a>
+      <p class="date-label" id="today-label"></p>
+    </header>
+
+    <section class="overview" id="top" aria-labelledby="page-title">
+      <div class="overview-copy">
+        <p class="eyebrow">YOUR MONEY, IN FOCUS</p>
+        <h1 id="page-title">Spending, <em>made clear.</em></h1>
+        <p class="intro">A little awareness goes a long way. Keep track of where it goes.</p>
+      </div>
+      <section class="balance-panel" aria-labelledby="balance-label">
+        <div class="balance-heading">
+          <span id="balance-label">Total spent</span>
+          <span class="balance-dot" aria-hidden="true"></span>
+        </div>
+        <p class="balance-value" id="total-balance" aria-live="polite">Rp 0</p>
+        <p class="balance-note" id="transaction-count">Across 0 transactions</p>
+      </section>
+    </section>
+
+    <section class="workspace" aria-label="Expense dashboard">
+      <section class="panel form-panel" aria-labelledby="form-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">NEW ENTRY</p>
+            <h2 id="form-title">Add an expense</h2>
+          </div>
+          <span class="heading-mark" aria-hidden="true">+</span>
+        </div>
+        <form id="expense-form" novalidate>
+          <label class="field-label" for="item-name">Item name</label>
+          <input id="item-name" name="name" type="text" placeholder="e.g. Morning coffee" maxlength="60" autocomplete="off" required>
+
+          <label class="field-label" for="item-amount">Amount</label>
+          <div class="amount-input">
+            <span aria-hidden="true">Rp</span>
+            <input id="item-amount" name="amount" type="number" placeholder="0" min="1" step="1" inputmode="numeric" required>
+          </div>
+
+          <label class="field-label" for="item-category">Category</label>
+          <div class="select-wrap">
+            <select id="item-category" name="category" required>
+              <option value="" disabled selected>Choose a category</option>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Fun">Fun</option>
+            </select>
+            <span class="select-arrow" aria-hidden="true">⌄</span>
+          </div>
+          <p class="form-error" id="form-error" role="alert"></p>
+          <button class="submit-button" type="submit"><span aria-hidden="true">+</span> Add expense</button>
+        </form>
+      </section>
+
+      <section class="panel chart-panel" aria-labelledby="chart-title">
+        <div class="section-heading chart-heading">
+          <div>
+            <p class="eyebrow">THE BIG PICTURE</p>
+            <h2 id="chart-title">Spending mix</h2>
+          </div>
+          <span class="chart-period">ALL TIME</span>
+        </div>
+        <div class="chart-content">
+          <div class="donut" id="spending-chart" role="img" aria-label="No spending recorded yet">
+            <div class="donut-center">
+              <span class="donut-caption">TOTAL</span>
+              <strong id="chart-total">Rp 0</strong>
+            </div>
+          </div>
+          <ul class="legend" id="chart-legend" aria-label="Spending by category">
+            <li class="legend-empty">Your category breakdown will appear here.</li>
+          </ul>
+        </div>
+      </section>
+    </section>
+
+    <section class="transactions-section" aria-labelledby="transactions-title">
+      <div class="transactions-header">
+        <div>
+          <p class="eyebrow">YOUR ACTIVITY</p>
+          <h2 id="transactions-title">Recent expenses <span id="list-count">0</span></h2>
+        </div>
+        <span class="list-hint">Newest first</span>
+      </div>
+      <div class="transaction-list" id="transaction-list" aria-live="polite" tabindex="0">
+        <div class="empty-state" id="empty-state">
+          <span class="empty-icon" aria-hidden="true">↗</span>
+          <p>No expenses yet</p>
+          <span>Your first entry will show up here.</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="app-footer"><span>DAYBOOK</span><span>Small steps. Clearer choices.</span></footer>
+  </main>
+</body>
+</html>
